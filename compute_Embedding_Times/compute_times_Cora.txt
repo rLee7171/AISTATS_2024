@@ -1,0 +1,1 @@
+{"non-symmetric": 0.10561442375183105, "symmetric": 0.05781102180480957, "deepwalk": 4.292715787887573, "truncated-spectral": 0.0275423526763916}
