@@ -14,8 +14,8 @@ from truncated_SpectralEmbedding import *
 
 root_dir = "/home/ryanlee/Repositories/AISTATS_2024"
 
-#dataset_name = ["Cora", "CiteSeer", "PubMed", "WikiCs", "Arxiv", "Products"] # dataset name
-dataset_name = ["Products"]
+dataset_name = ["Cora", "CiteSeer", "PubMed", "WikiCs", "Arxiv", "Products"] # dataset name
+
 
 ######################################################################################################################### 
 
@@ -55,13 +55,9 @@ for ds in dataset_name:
         highest_validation[coeff] = {}
         for embed in embedding_list:
             highest_validation[coeff][embed] = {}
-            #script_number += 1
             name = f"coeff={coeff}+embed={embed}"
             print(f"{name} \n")
-            #check_directory(f"{root_dir}/Results/Script{script_number}/")
-            #f = open(f"{root_dir}/Results/Script{script_number}/model_name.txt", "w")
-            #f.write(name)
-            #f.close()
+            
             gc.collect()
 
             graph = data_prepare(dataset_name=ds, maskInd=maskInd, root_dir=root_dir)

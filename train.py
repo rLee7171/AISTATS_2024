@@ -64,24 +64,11 @@ def train(model, optimizer, num_epoch, batch_size, data, device, in_dim, embeddi
     x_validation = x[validation_mask]
     x_testing = x[testing_mask]
     t=time.time()
-    loader_train = DataLoader(TensorDataset(x_training,y_training),shuffle=True,batch_size=batch_size)#batch_size=len(x_training)
-    loader_valid = DataLoader(list(zip(x_validation,y_validation)),shuffle=True,batch_size=batch_size)#batch_size=len(x_validation)
-    loader_test = DataLoader(list(zip(x_testing,y_testing)),shuffle=True,batch_size=batch_size)#batch_size=len(x_testing)
+    loader_train = DataLoader(TensorDataset(x_training,y_training),shuffle=True,batch_size=batch_size)
+    loader_valid = DataLoader(list(zip(x_validation,y_validation)),shuffle=True,batch_size=batch_size)
+    loader_test = DataLoader(list(zip(x_testing,y_testing)),shuffle=True,batch_size=batch_size)
 
     for epoch in range(num_epoch):
-        
-        
-        #x_h = model(x_training)
-        #loss_train = F.nll_loss(x_h,y_training)
-        #acc_train = accuracy(x_h,y_training)
-
-        #x_h = model(x_validation)
-        #loss_val = F.nll_loss(x_h,y_validation)
-        #acc_val = accuracy(x_h,y_validation)
-
-        #x_h = model(x_testing)
-        #loss_test = F.nll_loss(x_h,y_testing)
-        #acc_test = accuracy(x_h,y_testing)
 
         loss_train,acc_train = batching_helper(loader=loader_train,optimizer=optimizer,model=model,use_optimizer=True,device=device)
 
@@ -99,7 +86,6 @@ def train(model, optimizer, num_epoch, batch_size, data, device, in_dim, embeddi
         if increment_counter == increment_len:
             increment_counter = 0
             iter_index+=increment_len
-        #loss_train.cpu().detach().numpy()
         if keepResult:
             dic = {"embedding": embedding_name,"model": model.model_name, "data": data.graph_name, "mask": mask_type,
                 "epoch_number": epoch+1, "epoch_time":time.time() - t,
@@ -113,9 +99,6 @@ def train(model, optimizer, num_epoch, batch_size, data, device, in_dim, embeddi
             print(detailDF.loc[:, ["embedding", "data", "epoch_number", "epoch_time", "training_loss", "validation_loss", "test_loss",
                                 "training_accuracy", "validation_accuracy", "test_accuracy"]].iloc[-1, :])
         print("\n")
-        #loss_train.backward()
-        #optimizer.step()
-
     return model, optimizer, detailDF, deltaResults
 
 ######################################################################################################################### def test
@@ -143,18 +126,18 @@ def test(model, model_name, data, in_dim, batch_size, device, mask_type="manualM
     x_training = x[training_mask]
     x_validation = x[validation_mask]
     x_testing = x[testing_mask]
-    model.eval()
 
     x_whole = x
     y_whole = y
 
-    whole_loader = DataLoader(list(zip(x_whole,y_whole)),shuffle=True,batch_size=batch_size)#len(x_whole)
-    loader_train = DataLoader(list(zip(x_training,y_training)),shuffle=True,batch_size=batch_size)#len(x_training)
-    loader_valid = DataLoader(list(zip(x_validation,y_validation)),shuffle=True,batch_size=batch_size)#len(x_validation)
-    loader_test = DataLoader(list(zip(x_testing,y_testing)),shuffle=True,batch_size=batch_size)#len(x_testing)
+    whole_loader = DataLoader(list(zip(x_whole,y_whole)),shuffle=True,batch_size=batch_size)
+    loader_train = DataLoader(list(zip(x_training,y_training)),shuffle=True,batch_size=batch_size)
+    loader_valid = DataLoader(list(zip(x_validation,y_validation)),shuffle=True,batch_size=batch_size)
+    loader_test = DataLoader(list(zip(x_testing,y_testing)),shuffle=True,batch_size=batch_size)
 
 
     acc_total = 0
+    model.eval()
     model.to(device)
     for x_t,y_t in whole_loader:
         x_t = x_t.to(device)

@@ -13,7 +13,8 @@ from truncated_SpectralEmbedding import *
 
 ######################################################################################################################### hyper-parameter initialization
 
-root_dir = "/home/ryanlee/Repositories/AISTATS_2024"
+#root_dir = "/home/ryanlee/Repositories/AISTATS_2024"
+root_dir = "/Users/ryanlee/Repositories/AISTATS_2024"
 
 #########################################################################################################################
 
