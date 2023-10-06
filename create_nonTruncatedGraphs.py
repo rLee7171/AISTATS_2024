@@ -13,7 +13,7 @@ embedding_list = ["non-symmetric", "symmetric","deepwalk"]
 coeff_list = ["2"]
 number_epochs=200
 epochs = [str(i) for i in range(1,number_epochs+1) if i%5==0]
-condensed_epochs = [str(i) for i in range(1,number_epochs+1) if i%10==0]
+condensed_epochs = [str(i) for i in range(1,number_epochs+1) if i%20==0]
 num_experiments=20
 
 for dataset in dataset_name:
