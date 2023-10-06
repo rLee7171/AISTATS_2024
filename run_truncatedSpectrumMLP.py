@@ -65,20 +65,20 @@ for ds in dataset_name:
                 name = f"coeff={coeff}+embed={embed}"
                 print(f"{name} \n")
                 gc.collect()
+                graph = data_prepare(dataset_name=ds, maskInd=maskInd, root_dir=root_dir)
 
-                for iter_num in range(num_exp):
-                    graph = data_prepare(dataset_name=ds, maskInd=maskInd, root_dir=root_dir)
+                graph = trainValidationTest_splitPerClass(data=graph, trainVal_percent=trainVal_percent_perClass,
+                                                        train_percent=train_percent_perClass,
+                                                        train_num=train_num_perClass, val_num=val_num_perClass,
+                                                        verbose=data_verbose)
 
-                    graph = trainValidationTest_splitPerClass(data=graph, trainVal_percent=trainVal_percent_perClass,
-                                                            train_percent=train_percent_perClass,
-                                                            train_num=train_num_perClass, val_num=val_num_perClass,
+                graph = trainValidationTest_splitAllClasses(graph, train_percent_allClasses, train_num_allClasses,
+                                                            val_percent_allClasses, val_num_allClasses,
                                                             verbose=data_verbose)
 
-                    graph = trainValidationTest_splitAllClasses(graph, train_percent_allClasses, train_num_allClasses,
-                                                                val_percent_allClasses, val_num_allClasses,
-                                                                verbose=data_verbose)
+                graph.dir = root_dir
 
-                    graph.dir = root_dir
+                for iter_num in range(num_exp):
                     eigenVec, lambdaVal, runTime = truncated_spectral_embedding(G=graph, root_dir=root_dir, dataset_name=ds, dim=coeff*graph.num_classes, iter=model_dic[mdl_n], amb_dim=None,use_cache=False)
                     graph.embedding_vectors = eigenVec
 
