@@ -22,11 +22,11 @@ init = "xavier"
 pdrop = 0
 #
 
-deepwalk_epoch = 2
+deepwalk_epoch = 10
 deepwalk_lr = 0.01
 deepwalk_maskType = "original"
-deepwalk_batchSize = 128
-deepwalk_emb_dim=128
+deepwalk_batchSize = 64
+deepwalk_emb_dim = 128
 
 
 data_verbose = True
