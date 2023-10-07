@@ -4,16 +4,16 @@ import matplotlib.pyplot as plt
 import numpy as np
 root_dir = "/home/ryanlee/Repositories/AISTATS_2024"
 
-dataset_name = ["Cora","CiteSeer","PubMed","WikiCs","Arxiv","Products"]
+dataset_name = ["Cora","CiteSeer","PubMed","WikiCs","Arxiv"]
 
-model_name = ["ConicR_model_0","ConicR_model_1","ConicR_model_2","ConicR_model_3","ConicR_model_4","spectrumMLP"]
+model_name = ["spectrumMLP"]
 
 embedding_list = ["non-symmetric", "symmetric","deepwalk"]
 
 coeff_list = ["2"]
 number_epochs=200
 epochs = [str(i) for i in range(1,number_epochs+1) if i%5==0]
-condensed_epochs = [str(i) for i in range(1,number_epochs+1) if i%10==0]
+condensed_epochs = [str(i) for i in range(1,number_epochs+1) if i%20==0]
 num_experiments=20
 
 for dataset in dataset_name:
@@ -25,7 +25,7 @@ for dataset in dataset_name:
                 avg_valid_acc = []
                 avg_test_acc = []
                 for experiment_number in range(num_experiments):
-                    with open(f"{root_dir}"+"/Results/"+f"highest_Validation_{dataset}_{model}.txt") as jsonFile:
+                    with open(f"{root_dir}"+"/Merged_Results/"+f"highest_Validation_{dataset}_{model}.txt") as jsonFile:
                         model_validation_acc = []
                         model_test_acc = []
                         data = json.load(jsonFile)
@@ -51,7 +51,7 @@ for dataset in dataset_name:
                 plt.title(f"Dataset: {dataset}, Embed: {embed}")
                 plt.legend()
                 plt.subplots_adjust(bottom=0.2)
-                plt.savefig(f"{root_dir}/Picture_Graphs/{dataset}_{record_names[record_index]}_coeff_{coeff}_embed_{embed}.png")
+                plt.savefig(f"{root_dir}/mergedNonTruncatedGraphs/{dataset}_{record_names[record_index]}_coeff_{coeff}_embed_{embed}.png")
                 plt.close()
             
             
