@@ -14,8 +14,7 @@ from truncated_SpectralEmbedding import *
 
 root_dir = "/home/ryanlee/Repositories/AISTATS_2024"
 
-dataset_name = ["Cora", "CiteSeer", "PubMed", "WikiCs", "Arxiv"] # dataset name
-
+dataset_name = ["Products"]
 
 ######################################################################################################################### 
 
@@ -38,8 +37,8 @@ learning_rate = 0.01
 num_epoch = 200
 num_exp = 20                                       # number of experiments
 use_cache = True
-batch_size=128
-embedding_list = ["deepwalk"]
+batch_size=2048
+embedding_list = ["non-symmetric", "symmetric","deepwalk"]
 coeff_list = [2]
                                                    
 
@@ -137,6 +136,6 @@ for ds in dataset_name:
             gc.collect()
 
     ##########################################################################################  save results
-    with open(f"{root_dir}/Deepwalk_Results/highest_Validation_{ds}_spectrumMLP_Deepwalk.txt", "w") as fp:
+    with open(f"{root_dir}/Results/highest_Validation_{ds}_spectrumMLP.txt", "w") as fp:
         json.dump(highest_validation, fp)
 

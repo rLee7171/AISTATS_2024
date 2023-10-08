@@ -13,12 +13,11 @@ from truncated_SpectralEmbedding import *
 
 ######################################################################################################################### hyper-parameter initialization
 
-#root_dir = "/home/ryanlee/Repositories/AISTATS_2024"
-root_dir = "/Users/ryanlee/Repositories/AISTATS_2024"
+root_dir = "/home/ryanlee/Repositories/AISTATS_2024"
 
 #########################################################################################################################
 
-dataset_name = ["Cora", "CiteSeer", "PubMed", "WikiCs", "Arxiv", "Products"] # dataset name
+dataset_name = ["Cora", "CiteSeer", "PubMed", "WikiCs", "Arxiv"] # dataset name
 model_name = ["truncated_model_0","truncated_model_1","truncated_model_2","truncated_model_3", "truncated_model_4", "truncated_model_5","truncated_model_6","truncated_model_7","truncated_model_8"]
 model_dic = {"truncated_model_0": 2,"truncated_model_1": 4,"truncated_model_2": 8, "truncated_model_3": 16, "truncated_model_4": 32, "truncated_model_5": 64, "truncated_model_6": 128, "truncated_model_7": 256, "truncated_model_8": 512}
 

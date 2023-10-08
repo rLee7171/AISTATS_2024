@@ -18,7 +18,7 @@ root_dir = "/home/ryanlee/Repositories/AISTATS_2024"
 
 #########################################################################################################################
 
-dataset_name = ["Cora", "CiteSeer", "PubMed", "WikiCs", "Arxiv"] # dataset name
+dataset_name = ["Products"] # dataset name
 ######################################################################################################################### results df
 torch.cuda.empty_cache()
 gc.collect()
@@ -39,7 +39,7 @@ learning_rate = 0.01
 num_epoch = 200
 num_exp = 20                                       # number of experiments
 use_cache = True
-batch_size = 128
+batch_size = 2048
 embedding_list = ["truncated-spectral"]    # "deepwalk can be added"
 coeff_list = [2]
 weight_decay_list = [0]                            # add other real number is needed

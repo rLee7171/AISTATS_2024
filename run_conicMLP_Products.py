@@ -15,8 +15,7 @@ root_dir = "/home/ryanlee/Repositories/AISTATS_2024"
 
 #########################################################################################################################
 
-dataset_name = ["Cora", "CiteSeer", "PubMed", "WikiCs", "Arxiv"] # dataset name
-#dataset_name = ["Products"]
+dataset_name = ["Products"] # dataset name
 #########################################################################################################################
 
 torch.cuda.empty_cache()
@@ -38,8 +37,8 @@ learning_rate = 0.01
 num_epoch = 200
 num_exp = 20                                      # number of experiments
 use_cache = True
-batch_size = 128
-embedding_list = ["deepwalk"]    # "deepwalk can be added"
+batch_size = 2048
+embedding_list = ["non-symmetric", "symmetric","deepwalk"]    # "deepwalk can be added"
 coeff_list = [2]
 weight_decay_list = [0]                            # add other real number is needed                          
 model_names = ["model_0","model_1","model_2","model_3","model_4"]
@@ -133,5 +132,5 @@ for ds in dataset_name:
                 torch.cuda.empty_cache()
                 gc.collect()
         ##########################################################################################  save the result for all graphs
-        with open(f"{root_dir}/Deepwalk_Results/highest_Validation_{ds}_conicMLP_{model_names[model_index]}_Deepwalk.txt", "w") as fp:
+        with open(f"{root_dir}/Results/highest_Validation_{ds}_conicMLP_{model_names[model_index]}.txt", "w") as fp:
             json.dump(highest_validation, fp)
