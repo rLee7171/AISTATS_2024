@@ -28,5 +28,5 @@ for dataset in dataset_name:
                                 data1[key1][key2][key3][key4] = data2[key1][key2][key3][key4]
 
 
-        with open(f"{root_dir}/Merged_Results/highest_Validation_{dataset}_{model}.txt", "w") as fp:
+        with open(f"{root_dir}/Results/highest_Validation_{dataset}_{model}.txt", "w") as fp:
             json.dump(data1, fp)
