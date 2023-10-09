@@ -5,7 +5,7 @@ import numpy as np
 root_dir = "/home/ryanlee/Repositories/AISTATS_2024"
 dataset_name = ["Cora","CiteSeer","PubMed","WikiCs","Arxiv"]
 
-model_name = ["truncated_model_0","truncated_model_1","truncated_model_2","truncated_model_3","truncated_model_4","truncated_model_5","truncated_model_6","truncated_model_7"]
+model_name = ["truncated_model_0","truncated_model_1","truncated_model_2","truncated_model_3","truncated_model_4"]
 
 embedding_list = ["truncated-spectral"]
 
