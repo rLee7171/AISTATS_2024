@@ -4,9 +4,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 root_dir = "/home/ryanlee/Repositories/AISTATS_2024"
 
-dataset_name = ["Cora","CiteSeer","PubMed","WikiCs","Arxiv","Products"]
+dataset_name = ["Cora","CiteSeer","PubMed","WikiCs","Arxiv"]
 
 model_name = ["conicMLP_model_0","conicMLP_model_1","conicMLP_model_2","conicMLP_model_3","conicMLP_model_4","spectrumMLP"]
+
+different_model_names = ["Radial_model_0", "Radial_model_1","Radial_model_2","Radial_model_3","Radial_model_4", "SpectrumMLP"]
 
 embedding_list = ["non-symmetric", "symmetric","deepwalk"]
 
@@ -43,7 +45,7 @@ for dataset in dataset_name:
             all_records = [validation_acc_records,test_acc_records]
             for record_index in range(len(all_records)):
                 for index in range(len(all_records[record_index])):
-                    plt.plot(epochs,all_records[record_index][index],label=model_name[index],linestyle="--")
+                    plt.plot(epochs,all_records[record_index][index],label=different_model_names[index],linestyle="--")
 
                 plt.xticks(condensed_epochs,rotation="vertical")
                 plt.xlabel("Epochs")

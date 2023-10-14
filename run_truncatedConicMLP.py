@@ -47,7 +47,6 @@ trun_names = ["truncated_model_0","truncated_model_1","truncated_model_2","trunc
 trun_params = {"truncated_model_0": 2,"truncated_model_1": 8, "truncated_model_2": 32, "truncated_model_3": 128, "truncated_model_4": 512}        
 model_names = ["model_0","model_1","model_2","model_3","model_4"]
 model_params = [(2,2),(2,2),(4,1),(1,2),(2,1)]                                        
-script_number = 10
 epochResults = epochPerformanceDF()  # detailed of each epoch for train and validation set, both accuracy and loss
 summaryResults = TrainValidationTestDF()  # summary of trained model for train, validation, and test, both accuracy and loss
 
@@ -61,7 +60,6 @@ for ds in dataset_name:
                 highest_validation[coeff] = {}
                 for embed in embedding_list:
                     highest_validation[coeff][embed] = {}
-                    script_number += 1
                     name = f"coeff={coeff}+embed={embed}"
                     print(f"{name} \n")
                     gc.collect()
@@ -126,14 +124,7 @@ for ds in dataset_name:
                         summaryResults = pd.concat([summaryResults, sumDF], ignore_index=True)
 
                         ft = time.time() - gt
-                        ##################################################### saving results
-                        print("saving results...\n")
-                        ans = {"name": name, 'model_name': mdl_name, "model": mdl, "optimizer": opt,
-                                'epochResults': epochDF, 'summaryResults': sumDF,
-                                "t_train": t_train, "t_test": t_test, "t_all": gt,
-                                'iteration_number':iter_num}
-
-                        ##########################################################################################  save the result for each graph
+                        
                         del mdl
 
                     del graph

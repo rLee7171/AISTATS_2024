@@ -18,7 +18,8 @@ root_dir = "/home/ryanlee/Repositories/AISTATS_2024"
 #########################################################################################################################
 
 dataset_name = ["Products"] # dataset name
-model_name = ["truncated_model_0","truncated_model_1","truncated_model_2","truncated_model_3", "truncated_model_4"]
+#model_name = ["truncated_model_0","truncated_model_1","truncated_model_2","truncated_model_3", "truncated_model_4"]
+model_name = ["truncated_model_4"]
 model_dic = {"truncated_model_0": 2,"truncated_model_1": 8, "truncated_model_2": 32, "truncated_model_3": 128, "truncated_model_4": 512}
 
 ######################################################################################################################### results df
@@ -77,6 +78,7 @@ for ds in dataset_name:
                 graph.dir = root_dir
 
                 for iter_num in range(num_exp):
+                    print("Calculating Truncated Embedding")
                     eigenVec, lambdaVal, runTime = truncated_spectral_embedding(G=graph, root_dir=root_dir, dataset_name=ds, dim=coeff*graph.num_classes, iter=model_dic[mdl_n], amb_dim=None,use_cache=False)
                     graph.embedding_vectors = eigenVec
 
@@ -127,12 +129,6 @@ for ds in dataset_name:
 
                     ft = time.time() - gt
                     ##################################################### saving results
-                    print("saving results...\n")
-                    ans = {"name": name, 'model_name': mdl_name, "model": mdl, "optimizer": opt,
-                            'epochResults': epochDF, 'summaryResults': sumDF,
-                            "t_train": t_train, "t_test": t_test, "t_all": gt,
-                            'iteration_number':iter_num}
-
                     del mdl
 
                 del graph

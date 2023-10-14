@@ -125,12 +125,6 @@ for ds in dataset_name:
                     summaryResults = pd.concat([summaryResults, sumDF], ignore_index=True)
 
                     ft = time.time() - gt
-                    ##################################################### saving results
-                    print("saving results...\n")
-                    ans = {"name": name, 'model_name': mdl_name, "model": mdl, "optimizer": opt,
-                            'epochResults': epochDF, 'summaryResults': sumDF,
-                            "t_train": t_train, "t_test": t_test, "t_all": gt,
-                            'iteration_number':iter_num}
 
                     del mdl
 
