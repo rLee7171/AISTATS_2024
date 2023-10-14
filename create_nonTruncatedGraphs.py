@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 root_dir = "/home/ryanlee/Repositories/AISTATS_2024"
 
-dataset_name = ["Cora","CiteSeer","PubMed","WikiCs","Arxiv"]
+dataset_name = ["Cora","CiteSeer","PubMed","WikiCs","Arxiv","Products"]
 
 model_name = ["conicMLP_model_0","conicMLP_model_1","conicMLP_model_2","conicMLP_model_3","conicMLP_model_4","spectrumMLP"]
 
