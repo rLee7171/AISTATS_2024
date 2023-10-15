@@ -57,7 +57,7 @@ for dataset in dataset_name:
 
             record_names = ["Validation","Test"]      
             all_records = [validation_acc_records,test_acc_records]
-            font_size = 20
+            font_size = 15
             with open(f"{root_dir}/Table_Results/average_performance_{dataset}_{embed}.txt", "w") as fp:
                 json.dump(average_performance_dic, fp)
             for record_index in range(len(all_records)):
