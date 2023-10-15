@@ -19,11 +19,15 @@ condensed_epochs = [str(i) for i in range(1,number_epochs+1) if i%20==0]
 num_experiments=20
 
 for dataset in dataset_name:
+    average_performance_dic = {}
     for coeff in coeff_list:
         for embed in embedding_list:
             validation_acc_records = []
             test_acc_records = []
             for model in model_name:
+                average_performance_dic[model] = {}
+                average_performance_dic[model]["avg_valid"] = {}
+                average_performance_dic[model]["avg_test"] = {}
                 avg_valid_acc = []
                 avg_test_acc = []
                 for experiment_number in range(num_experiments):
@@ -38,20 +42,33 @@ for dataset in dataset_name:
                         avg_test_acc.append(model_test_acc)
                 avg_valid_acc = [(sum(i)/num_experiments) for i in zip(*avg_valid_acc)]
                 avg_test_acc = [(sum(i)/num_experiments) for i in zip(*avg_test_acc)]
+                tracker = 5
+                for i in range(len(avg_valid_acc)):
+                    if tracker % 10 == 0:
+                        average_performance_dic[model]["avg_valid"][tracker] = avg_valid_acc[i]
+                    tracker+=5
+                tracker = 5
+                for i in range(len(avg_test_acc)):
+                    if i % 10 == 0:
+                        average_performance_dic[model]["avg_test"][tracker] = avg_test_acc[i]
+                    tracker+=5
                 validation_acc_records.append(avg_valid_acc)
                 test_acc_records.append(avg_test_acc)
 
             record_names = ["Validation","Test"]      
             all_records = [validation_acc_records,test_acc_records]
+            font_size = 20
+            with open(f"{root_dir}/Table_Results/average_performance_{dataset}_{embed}.txt", "w") as fp:
+                json.dump(average_performance_dic, fp)
             for record_index in range(len(all_records)):
                 for index in range(len(all_records[record_index])):
-                    plt.plot(epochs,all_records[record_index][index],label=different_model_names[index],linestyle="--")
+                    plt.plot(epochs,all_records[record_index][index],label=different_model_names[index],linestyle="-", linewidth=3.0)
 
-                plt.xticks(condensed_epochs,rotation="vertical")
-                plt.xlabel("Epochs")
-                plt.ylabel(record_names[record_index]+" Accuracy")
-                plt.title(f"Dataset: {dataset}, Embed: {embed}")
-                plt.legend()
+                plt.xticks(condensed_epochs,rotation="vertical",fontsize=font_size)
+                plt.xlabel("Epochs",fontsize=font_size)
+                plt.ylabel(record_names[record_index]+" Accuracy",fontsize=font_size)
+                plt.title(f"Dataset: {dataset}, Embed: {embed}",fontsize=font_size)
+                plt.legend(fontsize = font_size)
                 plt.subplots_adjust(bottom=0.2)
                 plt.savefig(f"{root_dir}/Simple_Graphs/{dataset}_simpleGraph_{record_names[record_index]}_coeff_{coeff}_embed_{embed}.png")
                 plt.close()
