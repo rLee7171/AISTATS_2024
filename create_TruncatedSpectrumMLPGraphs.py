@@ -3,10 +3,8 @@ import statistics
 import matplotlib.pyplot as plt
 import numpy as np
 root_dir = "/home/ryanlee/Repositories/AISTATS_2024"
-#dataset_name = ["Cora","CiteSeer","PubMed","WikiCs","Arxiv"]
-dataset_name = ["Products"]
-#model_name = ["truncated_model_0","truncated_model_1","truncated_model_2","truncated_model_3","truncated_model_4"]
-model_name = ["truncated_model_0","truncated_model_1","truncated_model_2"]
+dataset_name = ["Cora","CiteSeer","PubMed","WikiCs","Arxiv"]
+model_name = ["truncated_model_0","truncated_model_1","truncated_model_2","truncated_model_3","truncated_model_4"]
 embedding_list = ["truncated-spectral"]
 
 coeff_list = ["2"]

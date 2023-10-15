@@ -18,9 +18,8 @@ root_dir = "/home/ryanlee/Repositories/AISTATS_2024"
 #########################################################################################################################
 
 dataset_name = ["Products"] # dataset name
-#model_name = ["truncated_model_0","truncated_model_1","truncated_model_2","truncated_model_3", "truncated_model_4"]
-model_name = ["truncated_model_4"]
-model_dic = {"truncated_model_0": 2,"truncated_model_1": 8, "truncated_model_2": 32, "truncated_model_3": 128, "truncated_model_4": 512}
+model_name = ["truncated_model_0","truncated_model_1","truncated_model_2","truncated_model_3", "truncated_model_4"]
+model_dic = {"truncated_model_0": 2,"truncated_model_1": 4, "truncated_model_2": 8, "truncated_model_3": 16, "truncated_model_4": 32}
 
 ######################################################################################################################### results df
 

@@ -43,13 +43,12 @@ batch_size = 2048
 embedding_list = ["truncated-spectral"]    # "deepwalk can be added"
 coeff_list = [2]
 weight_decay_list = [0]                            # add other real number is needed
-trun_names = ["truncated_model_3", "truncated_model_4"]
-#trun_names = ["truncated_model_0","truncated_model_1","truncated_model_2","truncated_model_3", "truncated_model_4"]
-trun_params = {"truncated_model_0": 2,"truncated_model_1": 8, "truncated_model_2": 32, "truncated_model_3": 128, "truncated_model_4": 512}                            
-model_names = ["model_0","model_1"]
+trun_names = ["truncated_model_0","truncated_model_1","truncated_model_2","truncated_model_3", "truncated_model_4"]
+trun_params = {"truncated_model_0": 2,"truncated_model_1": 4, "truncated_model_2": 8, "truncated_model_3": 16, "truncated_model_4": 32}                            
+model_names = ["model_0"]
 #model_names = ["model_0","model_1","model_2","model_3","model_4"]
 #model_params = [(2,2),(2,2),(4,1),(1,2),(2,1)]
-model_params = [(2,2),(2,2)]
+model_params = [(2,2)]
 epochResults = epochPerformanceDF()  # detailed of each epoch for train and validation set, both accuracy and loss
 summaryResults = TrainValidationTestDF()  # summary of trained model for train, validation, and test, both accuracy and loss
 
