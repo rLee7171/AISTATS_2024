@@ -49,7 +49,7 @@ for dataset in dataset_name:
                     tracker+=5
                 tracker = 5
                 for i in range(len(avg_test_acc)):
-                    if i % 10 == 0:
+                    if tracker % 10 == 0:
                         average_performance_dic[model]["avg_test"][tracker] = avg_test_acc[i]
                     tracker+=5
                 validation_acc_records.append(avg_valid_acc)
