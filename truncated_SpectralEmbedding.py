@@ -60,8 +60,6 @@ def truncated_spectral_embedding(G, dim, root_dir, dataset_name, iter=1, amb_dim
         values = torch.tensor(lambda_vals[:dim])
         vectors = vectors.to(torch.float32)
         values = values.to(torch.float32)
-        torch.save(vectors, cache_dir_egvec)
-        torch.save(values, cache_dir_egval)
 
     return vectors, values, runtimeInfo
 
