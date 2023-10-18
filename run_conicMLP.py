@@ -81,7 +81,7 @@ for ds in dataset_name:
                                                         batch_size=deepwalk_batchSize,use_cache=True)
                 for iter_num in range(num_exp):
 
-                    ##################################################### model: spectrumMLP
+                    ##################################################### model: conicMLP
                     gt = time.time()
                     torchStatus()
                     torch.cuda.seed_all()

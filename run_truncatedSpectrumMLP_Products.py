@@ -53,7 +53,7 @@ summaryResults = TrainValidationTestDF()  # summary of trained model for train, 
 ##################################################### datasets
 for ds in dataset_name:
     for mdl_n in model_name:
-         #Multi-nested Dictionary: first index denotes coeff, second index denotes embedding, third denotes experiment number, 
+        #Multi-nested Dictionary: first index denotes coeff, second index denotes embedding, third denotes experiment number, 
         #fourth denotes every "delta" epochs which records the highest valid accuracy with corresponding test accuracy
         highest_validation = {}
         for coeff in coeff_list:
@@ -75,12 +75,10 @@ for ds in dataset_name:
                                                             verbose=data_verbose)
 
                 graph.dir = root_dir
+                eigenVec, lambdaVal, runTime = truncated_spectral_embedding(G=graph, root_dir=root_dir, dataset_name=ds, dim=coeff*graph.num_classes, iter=model_dic[mdl_n], amb_dim=None,use_cache=True)
+                graph.embedding_vectors = eigenVec
 
                 for iter_num in range(num_exp):
-                    print("Calculating Truncated Embedding")
-                    eigenVec, lambdaVal, runTime = truncated_spectral_embedding(G=graph, root_dir=root_dir, dataset_name=ds, dim=coeff*graph.num_classes, iter=model_dic[mdl_n], amb_dim=None,use_cache=False)
-                    graph.embedding_vectors = eigenVec
-
                     ##################################################### model: spectrumMLP
                     gt = time.time()
                     torchStatus()

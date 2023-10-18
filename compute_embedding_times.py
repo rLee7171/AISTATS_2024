@@ -40,7 +40,7 @@ use_cache = True
 batch_size = 128
 embedding_list = ["non-symmetric", "symmetric","deepwalk","truncated-spectral"]
 coeff_list = [2]
-
+iterations = [2,4,8,16,32]
 for ds in dataset_name:
     compute_times = {}
     for coeff in coeff_list:
@@ -57,22 +57,29 @@ for ds in dataset_name:
                                                                 verbose=data_verbose)
 
             graph.dir = root_dir
-            start = time.time()
             if embed in ["non-symmetric", "symmetric"]:
+                start = time.time()
                 graph = embedding(data=graph, dataset_name=graph.graph_name, root_dir=graph.dir,
                                         ncol=coeff*graph.num_classes, param=coeff, drp_first=True, mode=embed,use_cache=False)
-
+                end = time.time()
+                compute_times[embed] = (end-start)
             elif embed=="deepwalk":
+                start = time.time()
                 graph.embedding_vectors = deepwalk(data=graph, root_dir=root_dir, dataset_name=ds, device=device,
                                                         emb_dim=coeff*graph.num_classes, param=coeff, learning_rate=deepwalk_lr,
                                                         n_epoch=deepwalk_epoch, mask_type="original",
                                                         batch_size=deepwalk_batchSize,use_cache=False)
+                end = time.time()
+                compute_times[embed] = (end-start)
             elif embed=="truncated-spectral":
-                eigenVec, lambdaVal, runTime = truncated_spectral_embedding(G=graph, root_dir=root_dir, dataset_name=ds, dim=coeff*graph.num_classes, iter=32, amb_dim=None,use_cache=False)
+                compute_times[embed] = {}
+                for iter in iterations:
+                    start = time.time()
+                    eigenVec, lambdaVal, runTime = truncated_spectral_embedding(G=graph, root_dir=root_dir, dataset_name=ds, dim=coeff*graph.num_classes, iter=iter, amb_dim=None,use_cache=False)
+                    end = time.time()
+                    compute_times[embed][iter] = (end-start)
 
-            end = time.time()
 
-            compute_times[embed] = (end-start)
             del graph
             torch.cuda.empty_cache()
             gc.collect()

@@ -75,10 +75,10 @@ for ds in dataset_name:
                                                             verbose=data_verbose)
 
                 graph.dir = root_dir
+                eigenVec, lambdaVal, runTime = truncated_spectral_embedding(G=graph, root_dir=root_dir, dataset_name=ds, dim=coeff*graph.num_classes, iter=model_dic[mdl_n], amb_dim=None,use_cache=True)
+                graph.embedding_vectors = eigenVec
 
                 for iter_num in range(num_exp):
-                    eigenVec, lambdaVal, runTime = truncated_spectral_embedding(G=graph, root_dir=root_dir, dataset_name=ds, dim=coeff*graph.num_classes, iter=model_dic[mdl_n], amb_dim=None,use_cache=False)
-                    graph.embedding_vectors = eigenVec
 
                     ##################################################### model: spectrumMLP
                     gt = time.time()
