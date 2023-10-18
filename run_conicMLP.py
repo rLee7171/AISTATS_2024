@@ -42,12 +42,12 @@ embedding_list = ["non-symmetric", "symmetric","deepwalk"]    # "deepwalk can be
 coeff_list = [2]
 weight_decay_list = [0]                            # add other real number is needed                          
 model_names = ["model_0","model_1","model_2","model_3","model_4"]
-model_params = [(2,2),(2,2),(4,1),(1,2),(2,1)]                                        
+model_params = {"model_0":(2,2),"model_1":(2,2),"model_2":(4,1),"model_3":(1,2),"model_4":(2,1)}                                       
 epochResults = epochPerformanceDF()  # detailed of each epoch for train and validation set, both accuracy and loss
 summaryResults = TrainValidationTestDF()  # summary of trained model for train, validation, and test, both accuracy and loss
 
 for ds in dataset_name:
-    for model_index in range(len(model_names)):
+    for mdl_n in model_names:
         #Multi-nested Dictionary: first index denotes coeff, second index denotes embedding, third denotes experiment number, 
         #fourth denotes every "delta" epochs which records the highest valid accuracy with corresponding test accuracy
         highest_validation = {}
@@ -90,9 +90,9 @@ for ds in dataset_name:
                     ##################################################### initialization
 
                     st = time.time()
-                    cur_params = model_params[model_index]
+                    cur_params = model_params[mdl_n]
                     mdl = conicMLP(dim = coeff*graph.num_classes, nclasses = graph.num_classes, nhidden = cur_params[0]*graph.num_classes, nchannels = cur_params[1], conicType = 'linear')
-                    if model_names[model_index] == "model_0":
+                    if mdl_n == "model_0":
                         mdl = conicMLP_model_0(dim = coeff*graph.num_classes, nclasses = graph.num_classes, nhidden = cur_params[0]*graph.num_classes, nchannels = cur_params[1], conicType = 'linear')
 
                     print(f"model is {mdl.model_name} \n")
@@ -123,14 +123,11 @@ for ds in dataset_name:
                     summaryResults = pd.concat([summaryResults, sumDF], ignore_index=True)
 
                     ft = time.time() - gt
-                    ##################################################### saving results
-
-                    ##########################################################################################  save the result for each graph
                     del mdl
 
                 del graph
                 torch.cuda.empty_cache()
                 gc.collect()
         ##########################################################################################  save the result for all graphs
-        with open(f"{root_dir}/Results/highest_Validation_{ds}_conicMLP_{model_names[model_index]}.txt", "w") as fp:
+        with open(f"{root_dir}/Results/highest_Validation_{ds}_conicMLP_{mdl_n}.txt", "w") as fp:
             json.dump(highest_validation, fp)

@@ -127,7 +127,6 @@ for ds in dataset_name:
                     summaryResults = pd.concat([summaryResults, sumDF], ignore_index=True)
 
                     ft = time.time() - gt
-                    ##################################################### saving results
                     del mdl
 
                 del graph

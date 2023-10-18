@@ -45,16 +45,14 @@ coeff_list = [2]
 weight_decay_list = [0]                            # add other real number is needed
 trun_names = ["truncated_model_0","truncated_model_1","truncated_model_2","truncated_model_3", "truncated_model_4"]
 trun_params = {"truncated_model_0": 2,"truncated_model_1": 4, "truncated_model_2": 8, "truncated_model_3": 16, "truncated_model_4": 32}                            
-model_names = ["model_0"]
-#model_names = ["model_0","model_1","model_2","model_3","model_4"]
-#model_params = [(2,2),(2,2),(4,1),(1,2),(2,1)]
-model_params = [(2,2)]
+model_names = ["model_0","model_1","model_2","model_3","model_4"]
+model_params = {"model_0":(2,2),"model_1":(2,2),"model_2":(4,1),"model_3":(1,2),"model_4":(2,1)}
 epochResults = epochPerformanceDF()  # detailed of each epoch for train and validation set, both accuracy and loss
 summaryResults = TrainValidationTestDF()  # summary of trained model for train, validation, and test, both accuracy and loss
 
 for ds in dataset_name:
-    for model_index in range(len(model_names)):
-        for mdl_n in trun_names:
+    for mdl_n in model_names:
+        for trun_n in trun_names:
             #Multi-nested Dictionary: first index denotes coeff, second index denotes embedding, third denotes experiment number, 
             #fourth denotes every "delta" epochs which records the highest valid accuracy with corresponding test accuracy
             highest_validation = {}
@@ -79,7 +77,7 @@ for ds in dataset_name:
                     graph.dir = root_dir
 
                     for iter_num in range(num_exp):
-                        eigenVec, lambdaVal, runTime = truncated_spectral_embedding(G=graph, root_dir=root_dir, dataset_name=ds, dim=coeff*graph.num_classes, iter=trun_params[mdl_n], amb_dim=None,use_cache=False)
+                        eigenVec, lambdaVal, runTime = truncated_spectral_embedding(G=graph, root_dir=root_dir, dataset_name=ds, dim=coeff*graph.num_classes, iter=trun_params[trun_n], amb_dim=None,use_cache=False)
                         graph.embedding_vectors = eigenVec
 
                         ##################################################### model: spectrumMLP
@@ -93,9 +91,9 @@ for ds in dataset_name:
                         graph = graph.to(device)
 
                         st = time.time()
-                        cur_params = model_params[model_index]
+                        cur_params = model_params[mdl_n]
                         mdl = conicMLP(dim = coeff*graph.num_classes, nclasses = graph.num_classes, nhidden = cur_params[0]*graph.num_classes, nchannels = cur_params[1], conicType = 'linear').to(device)
-                        if model_names[model_index] == "model_0":
+                        if mdl_n == "model_0":
                             mdl = conicMLP_model_0(dim = coeff*graph.num_classes, nclasses = graph.num_classes, nhidden = cur_params[0]*graph.num_classes, nchannels = cur_params[1], conicType = 'linear').to(device)
 
                         print(f"model is {mdl.model_name} \n")
@@ -132,7 +130,7 @@ for ds in dataset_name:
                     del graph
                     torch.cuda.empty_cache()
                     gc.collect()
-            with open(f"{root_dir}/Truncated_Results/highest_Validation_{ds}_conicMLP_{model_names[model_index]}_{mdl_n}.txt", "w") as fp:
+            with open(f"{root_dir}/Truncated_Results/highest_Validation_{ds}_conicMLP_{mdl_n}_{trun_n}.txt", "w") as fp:
                 json.dump(highest_validation, fp)
 
                 ##########################################################################################  save the result for all graphs
