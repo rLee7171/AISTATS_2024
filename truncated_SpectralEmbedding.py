@@ -28,12 +28,11 @@ def truncated_spectral_embedding(G, dim, root_dir, dataset_name, iter=1, amb_dim
 
     # Iterative improvement of B
     for j in range(iter):
-        B = (eye(n) - snL) @ (B)
+        B = B - snL@B
 
     B = np.hstack((B, np.sqrt(d).reshape(-1, 1)))
     # Form small eigenvalue problem for snL
     M = np.linalg.pinv(B) @ snL @ B
-    
     D, V = eigs(M,amb_dim-1)
     idx = D.argsort()[::-1]
     D = D[idx]
@@ -60,6 +59,8 @@ def truncated_spectral_embedding(G, dim, root_dir, dataset_name, iter=1, amb_dim
         values = torch.tensor(lambda_vals[:dim])
         vectors = vectors.to(torch.float32)
         values = values.to(torch.float32)
+        torch.save(vectors, cache_dir_egvec)
+        torch.save(values, cache_dir_egval)
 
     return vectors, values, runtimeInfo
 

@@ -13,10 +13,10 @@ from truncated_SpectralEmbedding import *
 ######################################################################################################################### 
 
 root_dir = "/home/ryanlee/Repositories/AISTATS_2024"
-
 #########################################################################################################################
 
-dataset_name = ["Cora", "CiteSeer", "PubMed", "WikiCs", "Arxiv", "Products"] # dataset name
+#dataset_name = ["Cora", "CiteSeer", "PubMed", "WikiCs", "Arxiv", "Products"] # dataset name
+dataset_name = ["Products"]
 ######################################################################################################################### results df
 torch.cuda.empty_cache()
 gc.collect()
@@ -38,7 +38,8 @@ num_epoch = 200
 num_exp = 20                                       # number of experiments
 use_cache = True
 batch_size = 128
-embedding_list = ["non-symmetric", "symmetric","deepwalk","truncated-spectral"]
+#embedding_list = ["non-symmetric", "symmetric","deepwalk","truncated-spectral"]
+embedding_list = ["truncated-spectral"]
 coeff_list = [2]
 iterations = [2,4,8,16,32]
 for ds in dataset_name:
