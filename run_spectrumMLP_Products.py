@@ -129,6 +129,8 @@ for ds in dataset_name:
 
                 ft = time.time() - gt
                 del mdl
+                torch.cuda.empty_cache()
+                gc.collect()
 
             del graph
             torch.cuda.empty_cache()
