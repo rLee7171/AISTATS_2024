@@ -8,6 +8,13 @@ from scipy.sparse.linalg import eigs
 from scipy.linalg import eig
 
 def truncated_spectral_embedding(G, dim, root_dir, dataset_name, iter=1, amb_dim=None,use_cache=False):
+    cache_dir_egval = root_dir + "/Cache/eigval_trun_embedding_" + str(dataset_name) + "_iter_"+ str(iter) + ".pt"
+    cache_dir_egvec = root_dir + "/Cache/eigvec_trun_embedding_" + str(dataset_name) + "_iter_"+ str(iter) + ".pt"
+    if use_cache:
+        vectors = torch.load(cache_dir_egvec, map_location=torch.device('cpu'))
+        values = torch.load(cache_dir_egval, map_location=torch.device('cpu'))
+        return vectors, values, 0
+
     # Set defaults
     if amb_dim is None:
         amb_dim = 2 * dim
@@ -48,19 +55,12 @@ def truncated_spectral_embedding(G, dim, root_dir, dataset_name, iter=1, amb_dim
     t2 = time.time()
     runtimeInfo = {'total': t2 - t1}
 
-    cache_dir_egval = root_dir + "/Cache/eigval_trun_embedding_" + str(dataset_name) + "_iter_"+ str(iter) + ".pt"
-    cache_dir_egvec = root_dir + "/Cache/eigvec_trun_embedding_" + str(dataset_name) + "_iter_"+ str(iter) + ".pt"
-
-    if use_cache:
-        vectors = torch.load(cache_dir_egvec, map_location=torch.device('cpu'))
-        values = torch.load(cache_dir_egval, map_location=torch.device('cpu'))
-    else:
-        vectors = torch.tensor(eigVects)
-        values = torch.tensor(lambda_vals[:dim])
-        vectors = vectors.to(torch.float32)
-        values = values.to(torch.float32)
-        torch.save(vectors, cache_dir_egvec)
-        torch.save(values, cache_dir_egval)
+    vectors = torch.tensor(eigVects)
+    values = torch.tensor(lambda_vals[:dim])
+    vectors = vectors.to(torch.float32)
+    values = values.to(torch.float32)
+    torch.save(vectors, cache_dir_egvec)
+    torch.save(values, cache_dir_egval)
 
     return vectors, values, runtimeInfo
 
