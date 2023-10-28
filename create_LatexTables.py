@@ -32,14 +32,14 @@ for per_name in performance_names:
                         latex_table.write("\\textsc{Dataset}&"+ dataset +"&&&&&\\\\")
                         results = []
                         for e in epochs:
-                            results.append(round(data[model_name[model_index]][per_name][e], 2))
+                            results.append(int(round(data[model_name[model_index]][per_name][e], 2)*100))
                         latex_table.write("\\textsc{"+different_model_names[model_index]+
-                                          "} & " + f"{results[0]}" +
-                                          " & " + f"{results[1]}" +
-                                          " & " + f"{results[2]}" +
-                                          " & " + f"{results[3]}" +
-                                          " & " + f"{results[4]}" +
-                                          " & " + f"{results[5]}")
+                                          "} & " + f"{results[0]}\\%" +
+                                          " & " + f"{results[1]}\\%" +
+                                          " & " + f"{results[2]}\\%" +
+                                          " & " + f"{results[3]}\\%" +
+                                          " & " + f"{results[4]}\\%" +
+                                          " & " + f"{results[5]}\\%")
                         latex_table.write("\\\\")
                     latex_table.write("\\\\")
                     latex_table.write("\\hline")
