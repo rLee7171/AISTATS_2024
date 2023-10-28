@@ -30,7 +30,8 @@ for per_name in performance_names:
             latex_table.write("\\textsc{Epoch}&10&20&40&80&160&200\\\\")
             latex_table.write("\\hline\\\\")
             for dataset in dataset_name:
-                latex_table.write("\\textsc{Dataset}&"+ dataset +"&&&&&\\\\")
+                #latex_table.write("\\textsc{Dataset}&"+ dataset +"&&&&&\\\\")
+                latex_table.write(f"\\textsc{{Dataset: {dataset}}}&&&&&&\\\\")
                 with open(f"{root_dir}"+"/Table_Results/"+f"average_performance_{dataset}_{embed}.txt") as jsonFile:
                     data = json.load(jsonFile)
                     for model_index in range(len(model_name)):
