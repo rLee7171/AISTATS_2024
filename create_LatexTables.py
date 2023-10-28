@@ -19,7 +19,11 @@ for per_name in performance_names:
     for embed in embedding_list:
         with open(f"{root_dir}/Latex_Tables/{per_name}_allDS_{embed}.tex", "w") as latex_table:
             latex_table.write("\\begin{table}[ht]")
-            latex_table.write("\\caption{Average validation accuracy overtime for \\textsc{Radial\\_model\\_0} on all datasets, non-symmetric embedding}")
+            if per_name == "avg_valid":
+                latex_table.write(f"\\caption{{Average validation accuracy overtime on all datasets, {embed} embedding}}")
+            else:
+                latex_table.write(f"\\caption{{Average test accuracy overtime on all datasets, {embed} embedding}}")
+
             latex_table.write("\\begin{center}")
             latex_table.write("\\scalebox{0.82}{")
             latex_table.write("\\begin{tabular}{lllllllllll}")
