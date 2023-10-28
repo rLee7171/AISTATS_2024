@@ -17,7 +17,7 @@ epochs = ["10","20","40","80","160","200"]
 
 for per_name in performance_names:
     for embed in embedding_list:
-        with open(f"{root_dir}/Latex_Tables/{per_name}_allDS_{embed}.tex", "w") as latex_table:
+        with open(f"{root_dir}/Latex_Tables/{per_name}_allDS_{embed}_MLP_RA_0.tex", "w") as latex_table:
             latex_table.write("\\begin{table}[ht]")
             if per_name == "avg_valid":
                 latex_table.write(f"\\caption{{Average validation accuracy overtime on all datasets, {embed} embedding}}")
@@ -30,7 +30,6 @@ for per_name in performance_names:
             latex_table.write("\\textsc{Epoch}&10&20&40&80&160&200\\\\")
             latex_table.write("\\hline\\\\")
             for dataset in dataset_name:
-                #latex_table.write("\\textsc{Dataset}&"+ dataset +"&&&&&\\\\")
                 latex_table.write(f"\\textsc{{Dataset: {dataset}}}&&&&&&\\\\")
                 with open(f"{root_dir}"+"/Table_Results/"+f"average_performance_{dataset}_{embed}.txt") as jsonFile:
                     data = json.load(jsonFile)
