@@ -3,7 +3,7 @@ import statistics
 import matplotlib.pyplot as plt
 import numpy as np
 root_dir = "/home/ryanlee/Repositories/AISTATS_2024"
-dataset_name = ["Cora","CiteSeer","PubMed","WikiCs","Arxiv"]
+dataset_name = ["Cora","CiteSeer","PubMed","WikiCs","Arxiv","Products"]
 trun_names = ["truncated_model_0","truncated_model_1","truncated_model_2","truncated_model_3","truncated_model_4"]
 conic_names = ["model_0","model_1","model_2","model_3","model_4"]
 
