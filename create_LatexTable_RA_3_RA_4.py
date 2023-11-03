@@ -5,7 +5,7 @@ dataset_name = ["Cora","CiteSeer","PubMed","WikiCs","Arxiv","Products"]
 
 model_name = ["conicMLP_model_3","conicMLP_model_4"]
 
-different_model_names = ["Radial\\_model\\_3", "Radial\\_model\\_4"]
+different_model_names = ["Radial Double", "Radial Single"]
 
 performance_names = ["avg_valid", "avg_test"]
 
@@ -30,14 +30,14 @@ for per_name in performance_names:
             latex_table.write("\\textsc{Epoch}&10&20&40&80&160&200\\\\")
             latex_table.write("\\hline\\\\")
             for dataset in dataset_name:
-                latex_table.write(f"\\textsc{{Dataset: {dataset}}}&&&&&&\\\\")
+                #latex_table.write(f"\\textsc{{Dataset: {dataset}}}&&&&&&\\\\")
                 with open(f"{root_dir}"+"/Table_Results/"+f"average_performance_{dataset}_{embed}.txt") as jsonFile:
                     data = json.load(jsonFile)
                     for model_index in range(len(model_name)):
                         results = []
                         for e in epochs:
                             results.append(int(round(data[model_name[model_index]][per_name][e], 2)*100))
-                        latex_table.write("\\textsc{"+different_model_names[model_index]+
+                        latex_table.write("\\textsc{"+dataset+"-"+different_model_names[model_index]+
                                           "} & " + f"{results[0]}\\%" +
                                           " & " + f"{results[1]}\\%" +
                                           " & " + f"{results[2]}\\%" +
