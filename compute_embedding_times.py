@@ -15,8 +15,8 @@ from truncated_SpectralEmbedding import *
 root_dir = "/home/ryanlee/Repositories/AISTATS_2024"
 #########################################################################################################################
 
-#dataset_name = ["Cora", "CiteSeer", "PubMed", "WikiCs", "Arxiv", "Products"] # dataset name
-dataset_name = ["Products"]
+dataset_name = ["Cora", "CiteSeer", "PubMed", "WikiCs", "Arxiv", "Products"] # dataset name
+
 ######################################################################################################################### results df
 torch.cuda.empty_cache()
 gc.collect()
