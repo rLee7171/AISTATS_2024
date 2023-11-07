@@ -6,9 +6,11 @@ root_dir = "/home/ryanlee/Repositories/AISTATS_2024"
 
 dataset_name = ["Cora","CiteSeer","PubMed","WikiCs","Arxiv","Products"]
 
-model_name = ["conicMLP_model_0","spectrumMLP","conicMLP_model_1","conicMLP_model_4"]
+model_name = ["conicMLP_model_1","conicMLP_model_4"]
 
-different_model_names = ["Radial_model_0", "MLP","Radial_model_1","conicMLP_model_4"]
+different_model_names = ["Radial_model_1","conicMLP_model_4"]
+
+abbr_names = ["RA_1", "RA_4"]
 
 embedding_list = ["non-symmetric", "symmetric","deepwalk"]
 
@@ -58,7 +60,7 @@ for dataset in dataset_name:
             record_names = ["Validation","Test"]      
             all_records = [validation_acc_records,test_acc_records]
             font_size = 15
-            with open(f"{root_dir}/Table_Results/average_performance_{dataset}_{embed}.txt", "w") as fp:
+            with open(f"{root_dir}/Table_Results/average_performance_{dataset}_{embed}_{abbr_names[0]}_{abbr_names[1]}.txt", "w") as fp:
                 json.dump(average_performance_dic, fp)
             for record_index in range(len(all_records)):
                 for index in range(len(all_records[record_index])):
