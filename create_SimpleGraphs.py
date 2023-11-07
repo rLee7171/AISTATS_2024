@@ -6,9 +6,9 @@ root_dir = "/home/ryanlee/Repositories/AISTATS_2024"
 
 dataset_name = ["Cora","CiteSeer","PubMed","WikiCs","Arxiv","Products"]
 
-model_name = ["conicMLP_model_0","spectrumMLP","conicMLP_model_3","conicMLP_model_4"]
+model_name = ["conicMLP_model_0","spectrumMLP","conicMLP_model_1","conicMLP_model_4"]
 
-different_model_names = ["Radial_model_0", "MLP","Radial_model_3","conicMLP_model_4"]
+different_model_names = ["Radial_model_0", "MLP","Radial_model_1","conicMLP_model_4"]
 
 embedding_list = ["non-symmetric", "symmetric","deepwalk"]
 
