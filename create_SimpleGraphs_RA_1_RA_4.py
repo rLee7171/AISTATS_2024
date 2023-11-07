@@ -8,7 +8,7 @@ dataset_name = ["Cora","CiteSeer","PubMed","WikiCs","Arxiv","Products"]
 
 model_name = ["conicMLP_model_1","conicMLP_model_4"]
 
-different_model_names = ["Radial_model_1","conicMLP_model_4"]
+different_model_names = ["Radial Double","Radial Single"]
 
 abbr_names = ["RA_1", "RA_4"]
 
@@ -72,7 +72,7 @@ for dataset in dataset_name:
                 plt.title(f"Dataset: {dataset}, Embed: {embed}",fontsize=font_size)
                 plt.legend(fontsize = font_size)
                 plt.subplots_adjust(bottom=0.2)
-                plt.savefig(f"{root_dir}/Simple_Graphs/{dataset}_simpleGraph_{record_names[record_index]}_coeff_{coeff}_embed_{embed}.png")
+                plt.savefig(f"{root_dir}/Simple_Graphs/{dataset}_simpleGraph_{record_names[record_index]}_coeff_{coeff}_embed_{embed}_{abbr_names[0]}_{abbr_names[1]}.png")
                 plt.close()
             
             
