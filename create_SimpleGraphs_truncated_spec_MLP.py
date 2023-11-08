@@ -10,9 +10,9 @@ model_name = ["spectrumMLP"]
 
 different_model_name = "MLP"
 
-embedding_list = ["non-symmetric","deepwalk"]
+embedding_list = ["non-symmetric","truncated-spectral"]
 
-different_embed_names = ["Spectral", "DeepWalk"]
+different_embed_names = ["Spectral", "Truncated"]
 
 combined_name = "truncated_spec"
 
@@ -35,15 +35,26 @@ for dataset in dataset_name:
                 avg_valid_acc = []
                 avg_test_acc = []
                 for experiment_number in range(num_experiments):
-                    with open(f"{root_dir}"+"/Results/"+f"highest_Validation_{dataset}_{model}.txt") as jsonFile:
-                        embed_validation_acc = []
-                        embed_test_acc = []
-                        data = json.load(jsonFile)
-                        for e in epochs:
-                            embed_validation_acc.append(data[coeff][embed][str(experiment_number+1)][e][0])
-                            embed_test_acc.append(data[coeff][embed][str(experiment_number+1)][e][1])
-                        avg_valid_acc.append(embed_validation_acc)
-                        avg_test_acc.append(embed_test_acc)
+                    if embed == "truncated-spectral":
+                        with open(f"{root_dir}"+"/Truncated_Results/"+f"highest_Validation_{dataset}_truncated_spectrumMLP_truncated_model_4.txt") as jsonFile:
+                            embed_validation_acc = []
+                            embed_test_acc = []
+                            data = json.load(jsonFile)
+                            for e in epochs:
+                                embed_validation_acc.append(data[coeff][embed][str(experiment_number+1)][e][0])
+                                embed_test_acc.append(data[coeff][embed][str(experiment_number+1)][e][1])
+                            avg_valid_acc.append(embed_validation_acc)
+                            avg_test_acc.append(embed_test_acc)
+                    else:
+                        with open(f"{root_dir}"+"/Results/"+f"highest_Validation_{dataset}_{model}.txt") as jsonFile:
+                            embed_validation_acc = []
+                            embed_test_acc = []
+                            data = json.load(jsonFile)
+                            for e in epochs:
+                                embed_validation_acc.append(data[coeff][embed][str(experiment_number+1)][e][0])
+                                embed_test_acc.append(data[coeff][embed][str(experiment_number+1)][e][1])
+                            avg_valid_acc.append(embed_validation_acc)
+                            avg_test_acc.append(embed_test_acc)
                 avg_valid_acc = [(sum(i)/num_experiments) for i in zip(*avg_valid_acc)]
                 avg_test_acc = [(sum(i)/num_experiments) for i in zip(*avg_test_acc)]
                 tracker = 5
