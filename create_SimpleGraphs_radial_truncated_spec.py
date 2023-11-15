@@ -82,7 +82,7 @@ for dataset in dataset_name:
                 plt.xticks(condensed_epochs,rotation="vertical",fontsize=font_size)
                 plt.xlabel("Epochs",fontsize=font_size)
                 plt.ylabel(record_names[record_index]+" Accuracy",fontsize=font_size)
-                plt.title(f"Dataset: {dataset}, Embed: {different_embed_names[0]}",fontsize=font_size)
+                plt.title(f"Dataset: {dataset}, Model: {different_model_names[0]}",fontsize=font_size)
                 plt.legend(fontsize = font_size)
                 plt.subplots_adjust(bottom=0.2)
                 plt.savefig(f"{root_dir}/Simple_Graphs/{dataset}_simpleGraph_{record_names[record_index]}_coeff_{coeff}_model_{combined_name}.png")
