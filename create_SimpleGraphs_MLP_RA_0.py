@@ -8,7 +8,7 @@ dataset_name = ["Cora","CiteSeer","PubMed","WikiCs","Arxiv","Products"]
 
 model_name = ["conicMLP_model_0","spectrumMLP"]
 
-different_model_names = ["\\textsc{Radial}$_{1-norm}$", "MLP"]
+different_model_names = ["Radial$_{1-norm}$", "MLP"]
 
 abbr_names = ["MLP", "RA_0"]
 
