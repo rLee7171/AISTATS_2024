@@ -47,7 +47,7 @@ for coeff in coeff_list:
                                 compute_time = round(data[embed],2)
 
                         if embed == "truncated-spectral":
-                            with open(f"{root_dir}/Truncated_Results/highest_Validation_{ds}_truncated_spectrumMLP_truncated_model_4.txt") as valid_results:
+                            with open(f"{root_dir}/Truncated_Results/highest_Validation_{ds}_{model_name[model_index]}_truncated_model_4.txt") as valid_results:
                                 epochs = [str(i) for i in range(1,number_epochs+1) if i%5==0]
                                 data = json.load(valid_results)
                                 for experiment_number in range(num_experiments):

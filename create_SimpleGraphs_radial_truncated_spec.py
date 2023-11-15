@@ -77,7 +77,7 @@ for dataset in dataset_name:
                 json.dump(average_performance_dic, fp)
             for record_index in range(len(all_records)):
                 for index in range(len(all_records[record_index])):
-                    plt.plot(epochs,all_records[record_index][index],label=different_embed_names[embed_index],linestyle="-", linewidth=3.0)
+                    plt.plot(epochs,all_records[record_index][index],label=different_embed_names[index],linestyle="-", linewidth=3.0)
 
                 plt.xticks(condensed_epochs,rotation="vertical",fontsize=font_size)
                 plt.xlabel("Epochs",fontsize=font_size)
