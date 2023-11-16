@@ -12,7 +12,7 @@ different_model_name = "MLP"
 
 embedding_list = ["non-symmetric","truncated-spectral"]
 
-different_embed_names = ["Spectral Non-Symmetric", "Truncated$_{32}$"]
+different_embed_names = ["Spectral$_{NS}$", "Truncated$_{32}$"]
 
 combined_name = "truncated_spec"
 
