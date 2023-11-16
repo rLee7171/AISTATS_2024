@@ -12,7 +12,7 @@ different_model_names = ["MLP","Radial$_{2,2}$"]
 
 embedding_list = ["truncated-spectral"]
 
-different_embed_names = ["Truncated"]
+different_embed_names = ["Truncated$_{32}$"]
 
 combined_name = "truncated_radial_MLP"
 

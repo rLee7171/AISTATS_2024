@@ -14,6 +14,8 @@ abbr_names = ["MLP", "RA_0"]
 
 embedding_list = ["non-symmetric", "symmetric","deepwalk"]
 
+different_embedding_names = ["Spectral$_{NS}$","Spectral$_{S}$", "deepwalk"]
+
 coeff_list = ["2"]
 number_epochs=200
 epochs = [str(i) for i in range(1,number_epochs+1) if i%5==0]
@@ -23,7 +25,7 @@ num_experiments=20
 for dataset in dataset_name:
     average_performance_dic = {}
     for coeff in coeff_list:
-        for embed in embedding_list:
+        for embed_index in range(len(embedding_list)):
             validation_acc_records = []
             test_acc_records = []
             for model in model_name:
@@ -38,8 +40,8 @@ for dataset in dataset_name:
                         model_test_acc = []
                         data = json.load(jsonFile)
                         for e in epochs:
-                            model_validation_acc.append(data[coeff][embed][str(experiment_number+1)][e][0])
-                            model_test_acc.append(data[coeff][embed][str(experiment_number+1)][e][1])
+                            model_validation_acc.append(data[coeff][embedding_list[embed_index]][str(experiment_number+1)][e][0])
+                            model_test_acc.append(data[coeff][embedding_list[embed_index]][str(experiment_number+1)][e][1])
                         avg_valid_acc.append(model_validation_acc)
                         avg_test_acc.append(model_test_acc)
                 avg_valid_acc = [(sum(i)/num_experiments) for i in zip(*avg_valid_acc)]
@@ -60,7 +62,7 @@ for dataset in dataset_name:
             record_names = ["Validation","Test"]      
             all_records = [validation_acc_records,test_acc_records]
             font_size = 15
-            with open(f"{root_dir}/Table_Results/average_performance_{dataset}_{embed}_{abbr_names[0]}_{abbr_names[1]}.txt", "w") as fp:
+            with open(f"{root_dir}/Table_Results/average_performance_{dataset}_{embedding_list[embed_index]}_{abbr_names[0]}_{abbr_names[1]}.txt", "w") as fp:
                 json.dump(average_performance_dic, fp)
             for record_index in range(len(all_records)):
                 for index in range(len(all_records[record_index])):
@@ -69,10 +71,10 @@ for dataset in dataset_name:
                 plt.xticks(condensed_epochs,rotation="vertical",fontsize=font_size)
                 plt.xlabel("Epochs",fontsize=font_size)
                 plt.ylabel(record_names[record_index]+" Accuracy",fontsize=font_size)
-                plt.title(f"Dataset: {dataset}, Embed: {embed}",fontsize=font_size)
+                plt.title(f"Dataset: {dataset}, Embed: {different_embedding_names[embed_index]}",fontsize=font_size)
                 plt.legend(fontsize = font_size)
                 plt.subplots_adjust(bottom=0.2)
-                plt.savefig(f"{root_dir}/Simple_Graphs/{dataset}_simpleGraph_{record_names[record_index]}_coeff_{coeff}_embed_{embed}_{abbr_names[0]}_{abbr_names[1]}.png")
+                plt.savefig(f"{root_dir}/Simple_Graphs/{dataset}_simpleGraph_{record_names[record_index]}_coeff_{coeff}_embed_{embedding_list[embed_index]}_{abbr_names[0]}_{abbr_names[1]}.png")
                 plt.close()
             
             
