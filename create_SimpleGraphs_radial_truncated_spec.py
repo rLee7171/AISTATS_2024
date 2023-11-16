@@ -10,9 +10,9 @@ model_name = ["conicMLP_model_1"]
 
 different_model_names = ["Radial"]
 
-embedding_list = ["truncated-spectral","non-symmetric"]
+embedding_list = ["non-symmetric","truncated-spectral"]
 
-different_embed_names = ["Truncated","Spectral"]
+different_embed_names = ["Spectral Non-Symmetric", "Truncated$_{32}$"]
 
 combined_name = "radial_truncated_spec"
 

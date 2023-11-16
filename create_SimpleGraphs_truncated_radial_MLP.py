@@ -8,7 +8,7 @@ dataset_name = ["Cora","CiteSeer","PubMed","WikiCs","Arxiv","Products"]
 
 model_name = ["truncated_spectrumMLP","conicMLP_model_1"]
 
-different_model_names = ["MLP","Radial"]
+different_model_names = ["MLP","Radial$_{2,2}$"]
 
 embedding_list = ["truncated-spectral"]
 
