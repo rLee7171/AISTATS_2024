@@ -6,11 +6,11 @@ root_dir = "/home/ryanlee/Repositories/AISTATS_2024"
 
 dataset_name = ["WikiCs","Arxiv"]
 
-model_name = "model_1"
+model_name = "model_3"
 
-different_model_name = "Radial_1"
+different_model_name = "Radial_3"
 
-abbr_name = "RA_1"
+abbr_name = "RA_3"
 
 embedding_list = ["non-symmetric", "symmetric","deepwalk"]
 
@@ -18,7 +18,7 @@ different_embedding_names = ["Spectral$_{NS}$","Spectral$_{S}$", "deepwalk"]
 
 types = ["conicMLP", "conicMLPAblation"]
 
-different_type_names = ["Radial$_{2,2}$", "Ablation Model"]
+different_type_names = ["Radial$_{1,2}$", "Ablation Model"]
 
 coeff_list = ["2"]
 number_epochs=200
