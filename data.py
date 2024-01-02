@@ -321,7 +321,6 @@ def embedding(data, dataset_name, root_dir, param, ncol=0, drp_first=True, use_c
 
         data.embedding_vectors = Y
         data.embedding_values = X[1:len(X)]
-
         if (torch.round(data.embedding_values, decimals=5)==1).sum() >1:
             raise ValueError('eigenvalues equal to 1 is more than 1 in spectral_embedding...')
 

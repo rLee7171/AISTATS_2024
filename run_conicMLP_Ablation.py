@@ -14,7 +14,6 @@ from truncated_SpectralEmbedding import *
 root_dir = "/home/ryanlee/Repositories/AISTATS_2024"
 
 #########################################################################################################################
-
 dataset_name = ["WikiCs", "Arxiv"] # dataset name
 #########################################################################################################################
 
@@ -40,7 +39,7 @@ use_cache = True
 batch_size = 128
 embedding_list = ["non-symmetric", "symmetric","deepwalk"]    # "deepwalk can be added"
 coeff_list = [2]
-weight_decay_list = [0]                            # add other real number is needed                          
+weight_decay_list = [0]                            # add other real number is needed                        
 model_names = ["model_1","model_2","model_3","model_4"]
 model_params = {"model_1":(2,2),"model_2":(4,1),"model_3":(1,2),"model_4":(2,1)}                                       
 epochResults = epochPerformanceDF()  # detailed of each epoch for train and validation set, both accuracy and loss
@@ -93,11 +92,13 @@ for ds in dataset_name:
                     cur_params = model_params[mdl_n]
                     mdl = conicMLPAblation(dim = coeff*graph.num_classes, nclasses = graph.num_classes, nhidden = cur_params[0]*graph.num_classes, nchannels = cur_params[1], conicType = 'linear')
 
-                    print(f"model is {mdl.model_name} \n")
+                    print(f"model is ablation {mdl.model_name} \n")
                     mdl_name = mdl.model_name
                     opt = torch.optim.Adam(mdl.parameters(), lr=learning_rate)
 
                     ##################################################### training phase
+                    print("Experiemnt number: ",iter_num+1)
+                    print("Embedding: ", embed)
                     print("entering training phase...\n")
                     mdl, opt, epochDF, deltaResults = train(model=mdl, optimizer=opt, mask_type=mask_type,
                                                             num_epoch=num_epoch, in_dim=coeff*graph.num_classes, embedding_name = embed, data=graph, keepResult=train_keep,
