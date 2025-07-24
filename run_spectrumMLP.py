@@ -12,7 +12,7 @@ from truncated_SpectralEmbedding import *
 
 #########################################################################################################################
 
-root_dir = "/home/ryanlee/Repositories/AISTATS_2024"
+root_dir = "/project/ikoutis/rl293/AISTATS_2024"
 
 dataset_name = ["Cora", "CiteSeer", "PubMed", "WikiCs", "Arxiv", "Products"] # dataset name
 

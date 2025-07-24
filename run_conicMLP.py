@@ -11,7 +11,7 @@ from parameters import *
 from truncated_SpectralEmbedding import *
 
 ######################################################################################################################### 
-root_dir = "/home/ryanlee/Repositories/AISTATS_2024"
+root_dir = "/project/ikoutis/rl293/AISTATS_2024"
 
 #########################################################################################################################
 
@@ -41,8 +41,10 @@ batch_size = 128
 embedding_list = ["non-symmetric", "symmetric","deepwalk"]    # "deepwalk can be added"
 coeff_list = [2]
 weight_decay_list = [0]                            # add other real number is needed                          
-model_names = ["model_0","model_1","model_2","model_3","model_4"]
-model_params = {"model_0":(2,2),"model_1":(2,2),"model_2":(4,1),"model_3":(1,2),"model_4":(2,1)}                                       
+#model_names = ["model_0","model_1","model_2","model_3","model_4"]
+#model_params = {"model_0":(2,2),"model_1":(2,2),"model_2":(4,1),"model_3":(1,2),"model_4":(2,1)}
+model_names = ["model_4_1"]
+model_params = {"model_4_1":(4,1)}
 epochResults = epochPerformanceDF()  # detailed of each epoch for train and validation set, both accuracy and loss
 summaryResults = TrainValidationTestDF()  # summary of trained model for train, validation, and test, both accuracy and loss
 
