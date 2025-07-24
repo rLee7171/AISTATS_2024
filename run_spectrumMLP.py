@@ -138,6 +138,6 @@ for ds in dataset_name:
             gc.collect()
 
     ##########################################################################################  save results
-    with open(f"{root_dir}/Results/highest_Validation_{ds}_spectrumMLP.txt", "w") as fp:
+    with open(f"{root_dir}/Results/highest_Validation_{ds}_spectrumMLP_scheduler.txt", "w") as fp:
         json.dump(highest_validation, fp)
 
